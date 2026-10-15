@@ -44,6 +44,7 @@ export function createPointerEffects(root) {
     enabled=!quiet && (fine.matches || profile.family==='liquid-glass') && !reduced.matches && !forced.matches && !protectedMaterial && !optedOut;
     root.dataset.pointerEffects=enabled?'on':'off';
     root.dataset.pointerMode=profile?.mode||'none';
+    button.closest('.pointer-preferences').hidden=quiet;
     button.disabled=quiet || (!fine.matches && profile.family!=='liquid-glass') || reduced.matches || forced.matches || protectedMaterial;
     button.setAttribute('aria-pressed',String(enabled));
     button.textContent=quiet?'Pointer effects: Not used':`${profile.family==='liquid-glass'?'Material motion':'Pointer effects'}: ${enabled?'On':'Off'}`;

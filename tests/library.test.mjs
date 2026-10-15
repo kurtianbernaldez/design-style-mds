@@ -3,13 +3,16 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import { discover, parseDesign } from '../scripts/catalog.mjs';
+import {catalogIndex, searchFamilies} from '../dist/catalog-tools.js';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const families=await discover(root);
 const designs=families.flatMap(f=>f.variants);
 const expected=['minimalism/clean-product','minimalism/editorial','minimalism/monochrome','brutalism/raw-web','brutalism/editorial','brutalism/colorful','glassmorphism/dark-glass','glassmorphism/light-glass','glassmorphism/vibrant-glass'];
 test('all requested families have complete discoverable variants',()=>{
-  assert.equal(families.length,39);assert.equal(designs.length,117);
+  assert.equal(families.length,43);assert.equal(designs.length,129);
+  for (const slug of ['doodle','isometric','gothic','mosaic']) assert.equal(families.find(f=>f.slug===slug)?.variants.length,3);
   assert.deepEqual(designs.slice(0,9).map(v=>`${v.family}/${v.slug}`),expected);
   assert(families.some(f=>f.slug==='solarpunk' && f.variants.some(v=>v.slug==='organic')));
   assert(families.every(f=>f.variants.length>=3));
@@ -36,7 +39,44 @@ test('built downloads match source byte-for-byte and deep routes have matching t
     assert.equal(await readFile(path.join(root,'dist',v.path),'utf8'),v.markdown);
     assert((await readFile(path.join(root,'dist/styles',v.family,v.slug,'index.html'),'utf8')).includes(`${v.name} — design-style-mds`));
   }
-  assert.deepEqual(JSON.parse(await readFile(path.join(root,'dist/catalog.json'),'utf8')),families);
+  const index = await readFile(path.join(root,'dist/catalog.json'),'utf8');
+  assert.deepEqual(JSON.parse(index),catalogIndex(families));
+  assert(Buffer.byteLength(index)<100_000,'Homepage metadata must not embed full source documents');
+});
+test('search matches family, variant, and tags while sorting preserves the catalog',()=>{
+  const index = catalogIndex(families), original = JSON.stringify(index);
+  assert(searchFamilies(index,'  SKETCHBOOK  ').some(f=>f.slug==='doodle'));
+  assert.deepEqual(searchFamilies(index,'axonometric').map(f=>f.slug),['isometric']);
+  assert(searchFamilies(index,'pointed arches').some(f=>f.slug==='gothic'));
+  assert.equal(searchFamilies(index,'no-such-family-xyz').length,0);
+  const asc=searchFamilies(index,'','name-asc').map(f=>f.name);
+  assert.deepEqual(searchFamilies(index,'','name-desc').map(f=>f.name),[...asc].reverse());
+  assert.equal(searchFamilies(index,'   ').length,families.length);
+  assert.equal(JSON.stringify(index),original);
+});
+test('all variants have unique names, source bodies, and actual preview captures',async()=>{
+  const names = new Set(), bodies = new Set(), captures = new Set();
+  for(const v of designs) {
+    const name = v.name.toLowerCase();
+    const body = v.markdown.split('---').slice(2).join('---').replace(/^# .+$/m,'').trim();
+    assert(!names.has(name),v.path+' repeats a name'); names.add(name);
+    assert(!bodies.has(body),v.path+' repeats a document'); bodies.add(body);
+    const image=await readFile(path.join(root,'dist/assets/previews',`${v.family}--${v.slug}.webp`));
+    assert.equal(image.toString('ascii',8,12),'WEBP');
+    const hash=createHash('sha256').update(image).digest('hex');
+    assert(!captures.has(hash),v.path+' repeats a preview capture'); captures.add(hash);
+  }
+});
+test('deep routes publish matching canonical and social metadata',async()=>{
+  for(const f of families) {
+    for(const entry of [f,...f.variants]) {
+      const route=entry===f?`/styles/${f.slug}`:`/styles/${f.slug}/${entry.slug}`;
+      const html=await readFile(path.join(root,'dist',route,'index.html'),'utf8');
+      assert(html.includes(`<link rel="canonical" href="https://styles.kurtian.dev${route}">`));
+      assert(html.includes(`<meta property="og:url" content="https://styles.kurtian.dev${route}">`));
+      assert(html.includes(`<meta property="og:title" content="${entry.name} — design-style-mds">`));
+    }
+  }
 });
 function luminance(hex){const rgb=hex.replace('#','').match(/../g).map(c=>parseInt(c,16)/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;}
 function contrast(a,b){const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}

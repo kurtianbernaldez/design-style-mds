@@ -5,6 +5,10 @@ import assert from 'node:assert/strict';
 const mode=process.argv[2]||'after';
 const origin=process.env.PREVIEW_ORIGIN||'http://127.0.0.1:4173';
 const catalog=JSON.parse(await readFile(new URL('../dist/catalog.json',import.meta.url)));
+// The browser receives only metadata; audit expectations come from authored files.
+await Promise.all(catalog.flatMap(f=>f.variants).map(async v=>{
+  v.markdown=await readFile(new URL('../'+v.path,import.meta.url),'utf8');
+}));
 const list=catalog.flatMap(f=>f.variants).filter(v=>!process.argv[3] || process.argv[3].split(",").some(prefix=>`${v.family}/${v.slug}`.startsWith(prefix)));
 const debugOrigin=process.env.CHROME_DEBUG_ORIGIN||'http://127.0.0.1:9222';
 const {webSocketDebuggerUrl}=await (await fetch(`${debugOrigin}/json/new?about:blank`,{method:'PUT'})).json();
@@ -14,7 +18,7 @@ socket.addEventListener('message',e=>{const m=JSON.parse(e.data);if(m.id){const 
 const send=(method,params={})=>new Promise((resolve,reject)=>{const key=++id;pending.set(key,{resolve,reject});socket.send(JSON.stringify({id:key,method,params}));});
 const evaluate=async expression=>(await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true})).result.value;
 await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
-const navigate=async url=>{await send('Page.navigate',{url});for(let i=0;i<100;i++){if(await evaluate(`document.readyState==='complete' && location.href===${JSON.stringify(url)}`))break;await new Promise(r=>setTimeout(r,30));}await evaluate('document.fonts.ready');await new Promise(r=>setTimeout(r,350));};
+const navigate=async url=>{await send('Page.bringToFront');await send('Page.navigate',{url});for(let i=0;i<100;i++){if(await evaluate(`document.readyState==='complete' && location.href===${JSON.stringify(url)}`))break;await new Promise(r=>setTimeout(r,30));}await evaluate('document.fonts.ready');await new Promise(r=>setTimeout(r,350));};
 const out=mode==='thumbnails'?new URL('../dist/assets/previews/',import.meta.url).pathname:`/tmp/design-style-mds-${mode}/`;
 await mkdir(out,{recursive:true});const report=[];
 try{
@@ -63,6 +67,8 @@ if(mode==='after'){
  for(let i=0;i<100;i++){if(await evaluate("!!document.querySelector('#showcase')?.contentDocument?.querySelector('#name')"))break;await new Promise(r=>setTimeout(r,30));}
  const originalFrame=await evaluate("window.reviewFrame=document.querySelector('#showcase');reviewFrame.contentDocument.querySelector('#name').value='Kept while comparing';true");
  await evaluate("document.querySelector('[data-variant=monochrome]').click()");await new Promise(r=>setTimeout(r,100));
+  await evaluate("document.querySelector('[data-view=source]').click()");
+  for(let i=0;i<100;i++){if(await evaluate("document.querySelector('#design-source').textContent.startsWith('---')"))break;await new Promise(r=>setTimeout(r,30));}
  const switched=await evaluate(`({same:reviewFrame===document.querySelector('#showcase'),value:reviewFrame.contentDocument.querySelector('#name').value,theme:reviewFrame.contentDocument.documentElement.dataset.theme,path:document.querySelector('#repo-path').textContent,source:document.querySelector('#design-source').textContent.startsWith('---'),url:location.pathname})`);
  assert.equal(switched.same,true);assert.equal(switched.value,'Kept while comparing');assert.equal(switched.theme,'minimalism/monochrome');assert.equal(switched.path,'styles/minimalism/monochrome/DESIGN.md');assert.equal(switched.source,true);assert.equal(switched.url,'/styles/minimalism/monochrome');
  await send('Browser.grantPermissions',{origin,permissions:['clipboardReadWrite','clipboardSanitizedWrite']});
@@ -78,8 +84,10 @@ if(mode==='after'){
   await navigate(origin+'/styles/'+family.slug+'/'+family.variants[0].slug);
   for(let i=0;i<100;i++){if(await evaluate("!!document.querySelector('#showcase')?.contentDocument?.querySelector('#name')"))break;await new Promise(r=>setTimeout(r,30));}
   await evaluate("window.comparisonFrame=document.querySelector('#showcase');comparisonFrame.contentDocument.querySelector('#name').value='Comparison state'");
+  await evaluate("document.querySelector('[data-view=source]').click()");
   for(const variant of family.variants){
    await evaluate(`document.querySelector('[data-variant="${variant.slug}"]').click()`);await new Promise(r=>setTimeout(r,40));
+   for(let i=0;i<100;i++){if(await evaluate(`document.querySelector('#design-source').textContent.includes(${JSON.stringify('slug: '+variant.slug+'\n')})`))break;await new Promise(r=>setTimeout(r,30));}
    const actual=await evaluate(`({same:comparisonFrame===document.querySelector('#showcase'),theme:comparisonFrame.contentDocument.documentElement.dataset.theme,family:comparisonFrame.contentDocument.documentElement.dataset.family,value:comparisonFrame.contentDocument.querySelector('#name').value,path:document.querySelector('#repo-path').textContent,source:document.querySelector('#design-source').textContent,name:document.querySelector('#variant-name').textContent})`);
    const sourceMatches=actual.source===variant.markdown;delete actual.source;assert(sourceMatches,variant.path+' source content must match');
    assert.deepEqual(actual,{same:true,theme:family.slug+'/'+variant.slug,family:family.slug,value:'Comparison state',path:variant.path,name:variant.name});

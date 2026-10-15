@@ -12,7 +12,7 @@ A style family is a starting point, not one definitive appearance. Minimalism ca
 
 ## The library
 
-**39 families · 117 complete design systems.** Every family below has a DESIGN.md and a matching preview.
+**43 families · 129 complete design systems.** Every family below has a DESIGN.md and a matching preview.
 
 | Family | Complete variants |
 |---|---|
@@ -29,16 +29,20 @@ A style family is a starting point, not one definitive appearance. Minimalism ca
 | Cyberpunk | [Night Terminal Cyberpunk](styles/cyberpunk/night-terminal/DESIGN.md) · [Street Bulletin Cyberpunk](styles/cyberpunk/street-bulletin/DESIGN.md) · [Diagnostic Console Cyberpunk](styles/cyberpunk/diagnostic-console/DESIGN.md) |
 | Dark Academia | [Reading Room Dark Academia](styles/dark-academia/reading-room/DESIGN.md) · [Annotated Manuscript Dark Academia](styles/dark-academia/annotated-manuscript/DESIGN.md) · [Scholarly Journal Dark Academia](styles/dark-academia/scholarly-journal/DESIGN.md) |
 | De Stijl | [Orthogonal Fields De Stijl](styles/de-stijl/orthogonal-fields/DESIGN.md) · [Architectural Grid De Stijl](styles/de-stijl/architectural-grid/DESIGN.md) · [Typographic Plane De Stijl](styles/de-stijl/typographic-plane/DESIGN.md) |
+| Doodle | [Sketchbook Doodle](styles/doodle/sketchbook/DESIGN.md) · [Whiteboard Doodle](styles/doodle/whiteboard/DESIGN.md) · [Field Notes Doodle](styles/doodle/field-notes/DESIGN.md) |
 | Frutiger Aero | [Clear Horizon Frutiger Aero](styles/frutiger-aero/clear-horizon/DESIGN.md) · [Aquatic Workspace Frutiger Aero](styles/frutiger-aero/aquatic-workspace/DESIGN.md) · [Nature Portal Frutiger Aero](styles/frutiger-aero/nature-portal/DESIGN.md) |
 | Frutiger Metro | [Flat Rhythm Frutiger Metro](styles/frutiger-metro/flat-rhythm/DESIGN.md) · [Urban Poster Frutiger Metro](styles/frutiger-metro/urban-poster/DESIGN.md) · [Wayfinding Tiles Frutiger Metro](styles/frutiger-metro/wayfinding-tiles/DESIGN.md) |
 | Futurism | [Precision Futurism](styles/futurism/precision-interface/DESIGN.md) · [Kinetic Type Futurism](styles/futurism/kinetic-type/DESIGN.md) · [Orbital Data Futurism](styles/futurism/orbital-data/DESIGN.md) |
+| Gothic | [Cathedral Gothic](styles/gothic/cathedral/DESIGN.md) · [Illuminated Folio Gothic](styles/gothic/illuminated-folio/DESIGN.md) · [Stone Cloister Gothic](styles/gothic/stone-cloister/DESIGN.md) |
 | Grunge | [Weathered Print Grunge](styles/grunge/weathered-print/DESIGN.md) · [Xerox Zine Grunge](styles/grunge/xerox-zine/DESIGN.md) · [Layered Poster Grunge](styles/grunge/layered-poster/DESIGN.md) |
 | Industrial | [Workshop Industrial](styles/industrial/workshop-panel/DESIGN.md) · [Technical Manual Industrial](styles/industrial/technical-manual/DESIGN.md) · [Assembly Line Industrial](styles/industrial/assembly-line/DESIGN.md) |
+| Isometric | [Floating Blocks Isometric](styles/isometric/floating-blocks/DESIGN.md) · [Exploded Layers Isometric](styles/isometric/exploded-layers/DESIGN.md) · [Wireframe City Isometric](styles/isometric/wireframe-city/DESIGN.md) |
 | Japandi | [Warm Order Japandi](styles/japandi/warm-order/DESIGN.md) · [Gallery Living Japandi](styles/japandi/gallery-living/DESIGN.md) · [Crafted Workspace Japandi](styles/japandi/crafted-workspace/DESIGN.md) |
 | Liquid Glass | [Clear Lens](styles/liquid-glass/clear-lens/DESIGN.md) · [Frosted Controls](styles/liquid-glass/frosted-controls/DESIGN.md) · [Fluid Dock](styles/liquid-glass/fluid-dock/DESIGN.md) |
 | Maximalism | [Curated Maximalism](styles/maximalism/curated-abundance/DESIGN.md) · [Festival Poster Maximalism](styles/maximalism/festival-poster/DESIGN.md) · [Cabinet of Curiosities](styles/maximalism/cabinet-of-curiosities/DESIGN.md) |
 | Memphis | [Pattern Play Memphis](styles/memphis/pattern-play/DESIGN.md) · [Geometric Toybox Memphis](styles/memphis/geometric-toybox/DESIGN.md) · [Editorial Collage Memphis](styles/memphis/editorial-collage/DESIGN.md) |
 | Mid-Century Modern | [Warm Modular Mid-Century Modern](styles/mid-century-modern/warm-modular/DESIGN.md) · [Atomic Graphics Mid-Century](styles/mid-century-modern/atomic-graphics/DESIGN.md) · [Woodland Editorial Mid-Century](styles/mid-century-modern/woodland-editorial/DESIGN.md) |
+| Mosaic | [Tessera Court Mosaic](styles/mosaic/tessera-court/DESIGN.md) · [Tile Panel Mosaic](styles/mosaic/tile-panel/DESIGN.md) · [Shard Gallery Mosaic](styles/mosaic/shard-gallery/DESIGN.md) |
 | Neo-Brutalism | [Playful Neo-Brutalism](styles/neo-brutalism/playful-utility/DESIGN.md) · [Block Editorial Neo-Brutalism](styles/neo-brutalism/block-editorial/DESIGN.md) · [Utility Board Neo-Brutalism](styles/neo-brutalism/utility-board/DESIGN.md) |
 | Neumorphism | [Soft Relief Neumorphism](styles/neumorphism/soft-relief/DESIGN.md) · [Recessed Console Neumorphism](styles/neumorphism/recessed-console/DESIGN.md) · [Porcelain Dashboard Neumorphism](styles/neumorphism/porcelain-dashboard/DESIGN.md) |
 | Pixel Art | [Grid Adventure Pixel Art](styles/pixel-art/grid-adventure/DESIGN.md) · [Handheld RPG Pixel Art](styles/pixel-art/handheld-rpg/DESIGN.md) · [Arcade Scoreboard Pixel Art](styles/pixel-art/arcade-scoreboard/DESIGN.md) |
@@ -74,6 +78,8 @@ styles/
 
 Every variant independently specifies philosophy, visual character, colors, typography, spacing, layout, grid, surfaces, borders, depth, components, imagery, motion, interaction states, responsive behavior, accessibility, and implementation guidance. No separate typography, button, material, or layout libraries are needed.
 
+The latest expansion adds Doodle, Isometric, Gothic, and Mosaic. Each has three interpretations with different composition, framing, and component treatments; see the [website audit and curation notes](docs/WEBSITE-AUDIT.md).
+
 All listed families are implemented. Every family has at least three coherent interpretations. More variants can be added when they express a meaningful distinction. [Browse the file index](styles/README.md) to open any DESIGN.md directly.
 
 The [variant expansion notes](docs/VARIANT-EXPANSION.md) explain the organizing idea behind each of the 70 additional interpretations.
@@ -94,7 +100,9 @@ The local path must exist in the agent's workspace. For an agent without the rep
 
 Open the [live library](https://styles.kurtian.dev/) or run the site locally, then open `/styles/minimalism`. Switch between Clean Product, Editorial, and Monochrome in the **same preview area**. The same fictional workspace contains navigation, hero, heading hierarchy, prose, buttons, cards, features, statistics, form controls, badges, tabs, menus, a dialog, testimonial, pricing, and footer.
 
-All 39 families appear on the landing page with a representative thumbnail, description, and accurate variant count. The content stays the same; typography, composition, density, surfaces, and component treatments change. The preview is a representative implementation, while DESIGN.md is the complete specification.
+Search by family, variant name, description, or tag; combine search with Featured or alphabetical sorting. Search and sorting are saved in the URL and restored when you return to the collection.
+
+All 43 families appear on the landing page with a representative thumbnail, description, and accurate variant count. The content stays the same; typography, composition, density, surfaces, and component treatments change. The preview is a representative implementation, while DESIGN.md is the complete specification.
 
 Pointer behavior is intentional: Glassmorphism and selected expressive digital styles respond across the whole page, Liquid Glass and tactile materials react on their functional surfaces, and quiet, editorial, and information-focused designs use ordinary control feedback. Glass catches moving reflections, neumorphism shifts local relief lighting, and pixel styles snap to a grid. Each DESIGN.md explains its choice. **Pointer effects: On/Off** saves your preference where an effect exists; touch, reduced-motion, and forced-color modes omit mouse tracking.
 
@@ -137,7 +145,8 @@ npm start       # serve an already built dist directory
 - `scripts/catalog.mjs` reads lightweight frontmatter: `family`, `slug`, `name`, `description`, and `tags`. `slug` identifies the variant within its family.
 - A family README supplies its display title, short introductory paragraph, and variant ordering through its file links.
 - `dist/index.html`, `app.js`, and `app.css` implement the library shell.
-- `dist/preview.html` and `preview.js` implement **one** reusable showcase. `themes.css` supplies scoped tokens; `identities.css` defines the family construction; `variants.css` defines additional interpretations and their responsive behavior.
+- `dist/preview.html` and `preview.js` implement **one** reusable showcase. `themes.css` supplies scoped tokens; `identities.css` defines the original family construction; `expansion.css` defines Doodle, Isometric, Gothic, and Mosaic; `variants.css` defines additional interpretations and their responsive behavior.
+- `dist/catalog.json` contains discovery metadata only; full Markdown loads on demand for source view and copying and is cached for the current session.
 - `scripts/build.mjs` generates `dist/catalog.json`, `dist/thumbnails.css`, and `dist/styles/` from the source documents. These generated files are ignored by Git and must not be hand-edited.
 - `scripts/browser-audit.mjs` captures the actual showcase into `dist/assets/previews/`; `scripts/thumbnails.mjs` generates the landing-image layout.
 - A variant without a matching preview theme fails the build. Empty family directories are excluded. Unknown routes return a useful 404.
@@ -158,7 +167,7 @@ This project retains the original repository's **MIT License and copyright notic
 
 ## Visual identity and local review
 
-All 117 variants have distinct composition and material rules, documented in their complete DESIGN.md. Read the [visual review and research sources](docs/VISUAL-REVIEW.md). The homepage previews are captures of the same working showcase, including its real typography, surfaces, and controls.
+All 129 variants have distinct composition and material rules, documented in their complete DESIGN.md. Read the [visual review and research sources](docs/VISUAL-REVIEW.md). The homepage previews are captures of the same working showcase, including its real typography, surfaces, and controls.
 
 For local visual maintenance, start the app with `npm run dev`, then start a separate local Chrome instance:
 
@@ -166,6 +175,7 @@ For local visual maintenance, start the app with `npm run dev`, then start a sep
 google-chrome --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 --user-data-dir=/tmp/design-style-mds-audit about:blank
 node scripts/browser-audit.mjs after
 node scripts/browser-audit.mjs thumbnails
+node scripts/library-audit.mjs
 npm run check
 ```
 

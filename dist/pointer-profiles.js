@@ -1,6 +1,27 @@
 // Every interpretation has an explicit pointer policy; decoration is optional.
 // Coordinates: --px/--py are local pixels; --angle follows the pointer direction.
 const families = {
+  'doodle': [
+    ['sketchbook','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['whiteboard','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['field-notes','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+  ],
+  'isometric': [
+    ['floating-blocks','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['exploded-layers','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['wireframe-city','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+  ],
+  'gothic': [
+    ['cathedral','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['illuminated-folio','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['stone-cloister','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+  ],
+  'mosaic': [
+    ['tessera-court','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['tile-panel','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+    ['shard-gallery','Native feedback','edge','follow','Stable control feedback without decorative tracking.'],
+  ],
+
   'liquid-glass': [
     ['clear-lens','Flowing caustic','liquid-lens','follow','Cool edge light and clear refraction respond within functional control islands.'],
     ['frosted-controls','Diffused flow','liquid-frost','follow','Diffused light and restrained flex respond on adaptive frosted controls.'],
@@ -202,6 +223,11 @@ const families = {
 // can react locally without adding a cursor companion to the surrounding page.
 // Unlisted families keep normal native hover/focus behavior with no tracking.
 const familyPolicies = {
+  'doodle': ['none', "Static pen marks and annotations express the drawing process; tracking marks would look like editable content."],
+  'isometric': ['none', "The projected geometry is a stable spatial explanation; moving the camera or targets would weaken reading and comparison."],
+  'gothic': ['none', "Architectural frames and tracery establish a fixed reading rhythm; decorative pointer motion would interrupt that structure."],
+  'mosaic': ['none', "Tessellated ornament belongs to fixed assembled surfaces; cursor-following pieces would imply unsupported editing behavior."],
+
   'liquid-glass': ['surface', 'Light, deformation, and refraction belong to functional glass controls; the cursor remains normal.'],
   glassmorphism: ['page', 'Moving reflections reveal transparency and connect the glass to its environment.'],
   neumorphism: ['surface', 'Local opposing light and shade explain raised and recessed surfaces.'],

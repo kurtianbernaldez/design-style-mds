@@ -1,0 +1,163 @@
+/* Four complete families. Ornament is confined to noninteractive surfaces. */
+:is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .style-artwork {
+  display: block; height: 120px; margin: 24px 0; background-position: center;
+  background-size: contain; background-repeat: no-repeat; pointer-events: none;
+}
+:is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) :focus-visible {
+  outline: 3px solid var(--ink); outline-offset: 4px; box-shadow: 0 0 0 3px var(--surface);
+}
+:is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) button:active:not(:disabled) {
+  transform: none; box-shadow: inset 0 0 0 2px var(--control-line);
+}
+:is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .primary:hover { text-decoration: underline; }
+
+/* Doodle: clean pen marks organize notes, boards, and observation sheets. */
+[data-family="doodle"] .panel { border: 2px solid var(--ink); }
+[data-family="doodle"] .demo-nav { border-bottom: 2px dashed var(--control-line); }
+[data-family="doodle"] .primary { border: 2px solid var(--accent); border-radius: 8px 15px 5px 11px; }
+[data-family="doodle"] .feature-index { padding: 8px 12px; border: 2px solid var(--ink); border-radius: 50% 40% 48% 45%; align-self: flex-start; color: var(--ink); }
+[data-family="doodle"] .demo-tabs button[aria-selected="true"] { text-decoration: underline wavy var(--accent); text-underline-offset: 7px; border-bottom: 0; }
+[data-family="doodle"] .testimonial { border: 2px dashed var(--ink); border-radius: 3% 2% 4% 2%; }
+[data-family="doodle"] .style-artwork { background-image: url('/assets/doodle-sketch.svg'); }
+[data-theme="doodle/sketchbook"] body { background-image: radial-gradient(#a2afc44d 1px, transparent 1px); background-size: 24px 24px; }
+[data-theme="doodle/sketchbook"] .hero h1 { font-style: italic; text-decoration: underline; text-decoration-color: #c5d7f0; text-underline-offset: 9px; text-decoration-thickness: 5px; }
+[data-theme="doodle/sketchbook"] .project-card { border-left: 7px double var(--accent); outline: 1px dashed var(--control-line); outline-offset: -12px; }
+[data-theme="doodle/sketchbook"] .features { gap: 28px; }
+[data-theme="doodle/sketchbook"] .feature-card:nth-child(2) { border-radius: 18px 5px 12px 4px; }
+[data-theme="doodle/sketchbook"] .stats { border-block: 2px dashed var(--control-line); }
+[data-theme="doodle/whiteboard"] .hero { display: block; }
+[data-theme="doodle/whiteboard"] .hero-copy { max-width: 780px; text-align: center; margin: auto; }
+[data-theme="doodle/whiteboard"] .hero-copy p { margin-inline: auto; }
+[data-theme="doodle/whiteboard"] .actions { justify-content: center; }
+[data-theme="doodle/whiteboard"] .project-card { margin-top: 48px; border: 3px solid var(--ink); border-radius: 40px 12px 35px 10px; }
+[data-theme="doodle/whiteboard"] .project-rows { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+[data-theme="doodle/whiteboard"] .project-rows > div { align-items: flex-start; border-top: 2px dashed var(--accent); }
+[data-theme="doodle/whiteboard"] .project-rows .caption { display: none; }
+[data-theme="doodle/whiteboard"] .style-artwork { background-image: url('/assets/doodle-board.svg'); }
+[data-theme="doodle/whiteboard"] .feature-card { border: 0; border-top: 2px dotted var(--ink); border-radius: 0; padding-inline: 12px; }
+[data-theme="doodle/whiteboard"] .badge { border: 2px solid var(--accent); border-radius: 45% 35% 40% 50%; }
+[data-theme="doodle/field-notes"] body { background-image: linear-gradient(#7183641c 1px, transparent 1px),linear-gradient(90deg,#7183641c 1px,transparent 1px); background-size: 24px 24px; }
+[data-theme="doodle/field-notes"] .hero h1 { font-size: clamp(36px,4.8vw,52px); text-transform: uppercase; }
+[data-theme="doodle/field-notes"] .panel { border: 1px solid var(--control-line); border-left: 3px solid var(--accent); }
+[data-theme="doodle/field-notes"] .style-artwork { background-image: url('/assets/doodle-field.svg'); }
+[data-theme="doodle/field-notes"] .features { grid-template-columns: 1fr; gap: 16px; }
+[data-theme="doodle/field-notes"] .feature-card { display: grid; grid-template-columns: 140px minmax(0,1fr); gap: 12px 24px; }
+[data-theme="doodle/field-notes"] .feature-index { grid-row: span 3; border-radius: 2px; border-style: dashed; }
+[data-theme="doodle/field-notes"] .feature-card :is(h3,p) { margin: 0; }
+[data-theme="doodle/field-notes"] :is(.primary,.badge) { border-radius: 2px; }
+[data-theme="doodle/field-notes"] .stats { background: var(--surface); border-block: 2px solid var(--ink); }
+
+/* Isometric: projected decoration, unrotated text and controls. */
+[data-family="isometric"] .panel { border: 1px solid var(--control-line); }
+[data-family="isometric"] .eyebrow { font-family: ui-monospace,monospace; }
+[data-family="isometric"] .style-artwork { background-image: url('/assets/isometric-blocks.svg'); }
+[data-theme="isometric/floating-blocks"] :is(.project-card,.feature-card,.price-card) { box-shadow: 6px 6px 0 #9bb8d3,12px 12px 0 #6385ad; }
+[data-theme="isometric/floating-blocks"] .hero { padding-right: 12px; }
+[data-theme="isometric/floating-blocks"] :is(.features,.pricing) { padding-right: 12px; padding-bottom: 12px; }
+[data-theme="isometric/floating-blocks"] .primary { box-shadow: 0 4px 0 #1e3b66; }
+[data-theme="isometric/floating-blocks"] .demo-tabs button[aria-selected="true"] { background: var(--surface); border: 1px solid var(--control-line); border-bottom: 6px solid var(--accent); }
+[data-theme="isometric/exploded-layers"] .hero { display: block; }
+[data-theme="isometric/exploded-layers"] .hero-copy { max-width: 780px; margin: auto; text-align: center; }
+[data-theme="isometric/exploded-layers"] .hero-copy p { margin-inline: auto; }
+[data-theme="isometric/exploded-layers"] .actions { justify-content: center; }
+[data-theme="isometric/exploded-layers"] .project-card { margin-top: 48px; border-bottom: 10px solid #d3c9e9; }
+[data-theme="isometric/exploded-layers"] .style-artwork { background-image: url('/assets/isometric-layers.svg'); height: 160px; }
+[data-theme="isometric/exploded-layers"] .project-rows { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+[data-theme="isometric/exploded-layers"] .project-rows .caption { display: none; }
+[data-theme="isometric/exploded-layers"] .features { grid-template-columns: 1fr; gap: 32px; }
+[data-theme="isometric/exploded-layers"] .feature-card { border-bottom: 10px solid #d3c9e9; border-left: 3px dashed var(--control-line); }
+[data-theme="isometric/exploded-layers"] .feature-card:nth-child(2) { margin-left: 10%; }
+[data-theme="isometric/exploded-layers"] .feature-card:nth-child(3) { margin-left: 20%; }
+[data-theme="isometric/exploded-layers"] .demo-tabs button[aria-selected="true"] { border-top: 3px solid var(--accent); border-bottom: 0; }
+[data-theme="isometric/wireframe-city"] .hero h1 { font-size: clamp(34px,4.3vw,48px); font-weight: 500; }
+[data-theme="isometric/wireframe-city"] .style-artwork { background-image: url('/assets/isometric-wire.svg'); }
+[data-theme="isometric/wireframe-city"] :is(.project-card,.price-card.featured) { border: 4px double var(--control-line); }
+[data-theme="isometric/wireframe-city"] .features { gap: 0; }
+[data-theme="isometric/wireframe-city"] .feature-card { border-right: 0; }
+[data-theme="isometric/wireframe-city"] .feature-card:last-child { border-right: 1px solid var(--control-line); }
+[data-theme="isometric/wireframe-city"] .stats { border-block: 1px solid var(--control-line); }
+[data-theme="isometric/wireframe-city"] .demo-tabs button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+
+/* Gothic: pointed tracery is a header, never a clipped control boundary. */
+[data-family="gothic"] h1 { font-weight: 500; letter-spacing: -.045em; }
+[data-family="gothic"] .demo-name { font-family: Georgia,serif; letter-spacing: .04em; }
+[data-family="gothic"] .demo-nav { border-bottom: 4px double var(--control-line); }
+[data-family="gothic"] .panel { border: 4px double var(--control-line); }
+[data-family="gothic"] .style-artwork { background-image: url('/assets/gothic-vault.svg'); height: 150px; }
+[data-family="gothic"] .primary { font-family: Georgia,serif; letter-spacing: .04em; }
+[data-family="gothic"] .badge { border-radius: 0; }
+[data-family="gothic"] .feature-card::before { content: ''; display: block; height: 56px; margin-bottom: 24px; background: url('/assets/gothic-bays.svg') center/contain no-repeat; pointer-events: none; }
+[data-family="gothic"] .demo-tabs button[aria-selected="true"] { border-top: 3px solid var(--accent); border-bottom: 3px double var(--accent); }
+[data-theme="gothic/cathedral"] .hero h1 { text-transform: uppercase; font-size: clamp(38px,5.5vw,68px); letter-spacing: -.04em; }
+[data-theme="gothic/cathedral"] .project-card { border-color: var(--accent); }
+[data-theme="gothic/cathedral"] .feature-card { border-left: 4px double var(--accent); border-right: 4px double var(--accent); }
+[data-theme="gothic/cathedral"] .feature-card::before { background-image: url('/assets/gothic-vault.svg'); }
+[data-theme="gothic/cathedral"] .stats { border-block: 4px double var(--control-line); }
+[data-theme="gothic/cathedral"] .testimonial { border-block: 1px solid var(--accent); }
+[data-theme="gothic/illuminated-folio"] .hero h1::first-letter { color: var(--accent); font-size: 1.4em; }
+[data-theme="gothic/illuminated-folio"] .panel { border-color: var(--accent); }
+[data-theme="gothic/illuminated-folio"] .style-artwork { background-image: url('/assets/gothic-folio.svg'); }
+[data-theme="gothic/illuminated-folio"] .features { grid-template-columns: 1fr; gap: 0; }
+[data-theme="gothic/illuminated-folio"] .feature-card { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 12px 32px; border: 0; border-top: 2px solid var(--accent); }
+[data-theme="gothic/illuminated-folio"] .feature-card::before { display: none; }
+[data-theme="gothic/illuminated-folio"] .feature-index { grid-row: span 3; padding: 20px 8px; align-self: start; border: 3px double var(--accent); color: var(--accent); }
+[data-theme="gothic/illuminated-folio"] .feature-card :is(h3,p) { margin: 0; }
+[data-theme="gothic/illuminated-folio"] .testimonial { text-align: left; border-left: 6px double var(--accent); }
+[data-theme="gothic/stone-cloister"] .hero { display: block; }
+[data-theme="gothic/stone-cloister"] .hero-copy { max-width: 760px; margin: auto; text-align: center; }
+[data-theme="gothic/stone-cloister"] .hero-copy p { margin-inline: auto; }
+[data-theme="gothic/stone-cloister"] .actions { justify-content: center; }
+[data-theme="gothic/stone-cloister"] .project-card { margin-top: 48px; }
+[data-theme="gothic/stone-cloister"] .style-artwork { background-image: url('/assets/gothic-bays.svg'); }
+[data-theme="gothic/stone-cloister"] .feature-card { border-top: 0; }
+[data-theme="gothic/stone-cloister"] .stats { padding: 0; border: 1px solid var(--control-line); }
+[data-theme="gothic/stone-cloister"] .stats > div { padding: 28px; background: var(--surface); }
+
+/* Mosaic: joined pieces and grout surround continuous reading surfaces. */
+[data-family="mosaic"] .style-artwork { background-image: url('/assets/mosaic-tessera.svg'); }
+[data-family="mosaic"] .demo-nav { border-bottom: 4px solid var(--control-line); }
+[data-family="mosaic"] .panel { border: 6px solid var(--canvas); outline: 1px solid var(--control-line); outline-offset: -1px; }
+[data-family="mosaic"] .primary { box-shadow: inset 0 0 0 2px var(--surface); }
+[data-family="mosaic"] .badge { border-radius: 0; }
+[data-family="mosaic"] .demo-tabs button[aria-selected="true"] { border-bottom: 6px solid var(--accent); }
+[data-theme="mosaic/tessera-court"] .hero { border-top: 16px solid; border-image: repeating-linear-gradient(90deg,#8c422d 0 10px,#eee5d5 10px 12px,#697a5c 12px 22px,#eee5d5 22px 24px) 16; margin-top: 24px; }
+[data-theme="mosaic/tessera-court"] .project-card { border: 8px solid; border-image: repeating-linear-gradient(45deg,#8c422d 0 10px,#eee5d5 10px 12px,#697a5c 12px 22px,#eee5d5 22px 24px) 8; }
+[data-theme="mosaic/tessera-court"] .feature-card { border-top: 12px solid #cbb997; }
+[data-theme="mosaic/tessera-court"] .testimonial { border-block: 8px double var(--control-line); }
+[data-theme="mosaic/tile-panel"] .hero { display: block; }
+[data-theme="mosaic/tile-panel"] .hero-copy { max-width: 760px; margin: auto; text-align: center; }
+[data-theme="mosaic/tile-panel"] .hero-copy p { margin-inline: auto; }
+[data-theme="mosaic/tile-panel"] .actions { justify-content: center; }
+[data-theme="mosaic/tile-panel"] .project-card { margin-top: 40px; border-width: 4px; }
+[data-theme="mosaic/tile-panel"] .style-artwork { background-image: url('/assets/mosaic-tiles.svg'); background-size: 240px 120px; background-repeat: repeat-x; }
+[data-theme="mosaic/tile-panel"] .project-rows { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+[data-theme="mosaic/tile-panel"] .project-rows .caption { display: none; }
+[data-theme="mosaic/tile-panel"] .feature-card { border-top: 14px solid var(--accent); }
+[data-theme="mosaic/tile-panel"] .stats { gap: 12px; border: 0; }
+[data-theme="mosaic/tile-panel"] .stats > div { background: var(--surface); border: 1px solid var(--control-line); padding: 24px; }
+[data-theme="mosaic/shard-gallery"] .hero h1 { font-size: clamp(38px,6.5vw,76px); font-weight: 650; }
+[data-theme="mosaic/shard-gallery"] .style-artwork { background-image: url('/assets/mosaic-shards.svg'); height: 170px; }
+[data-theme="mosaic/shard-gallery"] .features { grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
+[data-theme="mosaic/shard-gallery"] .feature-card { border: 0; border-top: 8px solid var(--accent); padding-inline: 16px; }
+[data-theme="mosaic/shard-gallery"] .feature-card:first-child { background: #eedce5; }
+[data-theme="mosaic/shard-gallery"] .testimonial { text-align: left; border-left: 12px solid var(--accent); border-block: 0; }
+[data-theme="mosaic/shard-gallery"] .price-card.featured { border-left: 12px solid var(--accent); }
+
+@media (max-width: 760px) {
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .hero { display: grid; }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .project-rows { display: block; }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .feature-card { display: flex; margin-inline: 0; }
+  [data-theme="isometric/wireframe-city"] .feature-card { border-right: 1px solid var(--control-line); }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .hero h1 { font-size: clamp(36px,8vw,56px); }
+}
+@media (max-width: 480px) {
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) { --gutter: 20px; --section: 56px; --gap: 24px; }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .stats { grid-template-columns: 1fr; }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .stats > div { padding: 12px!important; border-right: 0; border-bottom: 1px solid var(--control-line); }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) .hero h1 { font-size: 36px; }
+}
+@media (forced-colors: active) {
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) :is(.style-artwork,.feature-card::before) { display: none; }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) :is(.hero,.panel) { border-image: none; border-color: ButtonText; }
+  :is([data-family="doodle"], [data-family="isometric"], [data-family="gothic"], [data-family="mosaic"]) :focus-visible { outline-color: Highlight; }
+}

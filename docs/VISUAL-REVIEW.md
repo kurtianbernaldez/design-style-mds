@@ -1,6 +1,6 @@
 # Visual identity review
 
-The library has since expanded to **114 variants across 38 families, with three interpretations per family**. The family research below informed the foundations; [the expansion notes](VARIANT-EXPANSION.md) describe the 70 additional design directions and their validation.
+The current library contains **129 variants across 43 families, with three interpretations per family**. The [October website audit](WEBSITE-AUDIT.md) records the latest expansion and verification; the dated reviews below retain their original scope. The family research below informed the foundations; [the expansion notes](VARIANT-EXPANSION.md) describe the 70 additional design directions and their validation.
 
 Reviewed 2026-09-15. Scope: all 38 families and 44 complete variants.
 

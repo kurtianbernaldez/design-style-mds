@@ -46,7 +46,8 @@ try {
   if(profile.mode==='none'){
    assert.equal(await evaluate('document.documentElement.dataset.pointerEffects'),'off',theme+' quiet mode');
    await move(450,330);assert.equal(await evaluate('document.querySelectorAll(".pointer-effect").length'),0,theme+' no tracking decoration');
-   assert(await evaluate('document.querySelector("#pointer-toggle").disabled'),theme+' quiet control is explanatory');
+   assert(await evaluate('document.querySelector("#pointer-toggle").disabled'),theme+' quiet control stays disabled');
+   assert(await evaluate('document.querySelector(".pointer-preferences").hidden'),theme+' no unusable preference panel');
    report.push({theme,mode:profile.mode,regions:0});continue;
   }
   assert.equal(await evaluate('document.documentElement.dataset.pointerEffects'),'on',theme+' effects available: '+await evaluate("document.querySelector('#pointer-description').textContent"));
